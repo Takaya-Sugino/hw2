@@ -91,7 +91,8 @@ Movie.destroy_all
 Person.destroy_all
 Role.destroy_all
 
-values = { title:"Batman Begins", year_released:2005, rated: "PG-13" }
+# Adding Batman Begins data to Movie table 
+values = {title: "Batman Begins", year_released: 2005, rated: "PG-13" }
 movie = Movie.new(values)
 movie.save
 
@@ -106,36 +107,39 @@ role.save
 role = Role.new({character_name:"Commissioner Gordon", movie_id: movie.id})
 role.save
 
-values = { title:"The Dark Knight", year_released:2008, rated: "PG-13" }
+# Adding The Dark Knight data to Movie table 
+values = { title: "The Dark Knight", year_released: 2008, rated: "PG-13" }
 movie = Movie.new(values)
 movie.save
 
-role = Role.new({character_name:"Bruce Wayne", movie_id: movie.id})
+role = Role.new({character_name: "Bruce Wayne", movie_id: movie.id})
 role.save
-role = Role.new({character_name:"Joker", movie_id: movie.id})
+role = Role.new({character_name: "Joker", movie_id: movie.id})
 role.save
-role = Role.new({character_name:"Harvey Dent", movie_id: movie.id})
+role = Role.new({character_name: "Harvey Dent", movie_id: movie.id})
 role.save
-role = Role.new({character_name:"Alfred", movie_id: movie.id})
+role = Role.new({character_name: "Alfred", movie_id: movie.id})
 role.save
-role = Role.new({character_name:"Rachel Dawes", movie_id: movie.id})
+role = Role.new({character_name: "Rachel Dawes", movie_id: movie.id})
 role.save
 
-values = { title:"The Dark Knight Rises", year_released:2012, rated: "PG-13" }
+# Adding The Dark Knight Rises data to movies table
+values = { title: "The Dark Knight Rises", year_released: 2012, rated: "PG-13" }
 movie = Movie.new(values)
 movie.save
 
-role = Role.new({character_name:"Bruce Wayne", movie_id: movie.id})
+role = Role.new({character_name: "Bruce Wayne", movie_id: movie.id})
 role.save
-role = Role.new({character_name:"Commissioner Gordon", movie_id: movie.id})
+role = Role.new({character_name: "Commissioner Gordon", movie_id: movie.id})
 role.save
-role = Role.new({character_name:"Bane", movie_id: movie.id})
+role = Role.new({character_name: "Bane", movie_id: movie.id})
 role.save
-role = Role.new({character_name:"John Blake", movie_id: movie.id})
+role = Role.new({character_name: "John Blake", movie_id: movie.id})
 role.save
 role = Role.new({character_name:"Selina Kyle", movie_id: movie.id})
 role.save
 
+# Linking Christopher Nolan with three movies 
 person = Person.new({name: "Christopher Nolan"})
 person.save
 
@@ -151,99 +155,84 @@ movie = Movie.where({title: "The Dark Knight Rises"})[0]
 movie.person_id = person.id
 movie.save
 
+# Adding actors to people table and linking them with Batman Begins movie
 movie = Movie.where({title: "Batman Begins"})[0]
 
 person = Person.new({name: "Christian Bale"})
 person.save
-role = Role.where({character_name: "Bruce Wayne", movie_id: movie.id})[0]
-role.person_id = person.id
+role = Role.new({character_name: "Bruce Wayne", movie_id: movie.id, person_id: person.id})
 role.save
 
 person = Person.new({name: "Michael Caine"})
 person.save
-role = Role.where({character_name: "Alfred", movie_id: movie.id})[0]
-role.person_id = person.id
+role = Role.new({character_name: "Alfred", movie_id: movie.id, person_id: person.id})
 role.save
 
 person = Person.new({name: "Liam Neeson"})
 person.save
-role= Role.where({character_name: "Ra's Al Ghul", movie_id: movie.id})[0]
-role.person_id = person.id
+role = Role.new({character_name: "Ra's Al Ghul", movie_id: movie.id, person_id: person.id})
 role.save
 
 person = Person.new({name: "Katie Holmes"})
 person.save
-role= Role.where({character_name: "Rachel Dawes", movie_id: movie.id})[0]
-role.person_id = person.id
+role = Role.new({character_name: "Rachel Dawes", movie_id: movie.id, person_id: person.id})
 role.save
 
 person = Person.new({name: "Gary Oldman"})
 person.save
-role= Role.where({character_name: "Commissioner Gordon", movie_id: movie.id})[0]
-role.person_id = person.id
+role = Role.new({character_name: "Commissioner Gordon", movie_id: movie.id, person_id: person.id})
 role.save
 
+# Adding actors to people table and linking them with The Dark Knight movie
 movie = Movie.where({title: "The Dark Knight"})[0]
 
-person = Person.new({name: "Christian Bale"})[0]
-person.save
-role = Role.where({character_name: "Bruce Wayne", movie_id: movie.id})[0]
-role.person_id = person.id
+person = Person.where({name: "Christian Bale"})[0]
+role = Role.new({character_name: "Bruce Wayne", movie_id: movie.id, person_id: person.id})
 role.save
 
-person = Person.new({name: "Heath Ledger"})[0]
+person = Person.new({name: "Heath Ledger"})
 person.save
-role = Role.where({character_name: "Joker", movie_id: movie.id})[0]
-role.person_id = person.id
+role = Role.new({character_name: "Joker", movie_id: movie.id, person_id: person.id})
 role.save
 
-person = Person.new({name: "Aaron Eckhart"})[0]
+person = Person.new({name: "Aaron Eckhart"})
 person.save
-role= Role.where({character_name: "Harvey Dent", movie_id: movie.id})[0]
-role.person_id = person.id
+role= Role.new({character_name: "Harvey Dent", movie_id: movie.id, person_id: person.id})
 role.save
 
-person = Person.new({name: "Michael Caine"})[0]
-person.save
-role= Role.where({character_name: "Alfred", movie_id: movie.id})[0]
-role.person_id = person.id
+person = Person.where({name: "Michael Caine"})[0]
+role= Role.new({character_name: "Alfred", movie_id: movie.id, person_id: person.id})
 role.save
 
-person = Person.new({name: "Maggie Gyllenhaal"})[0]
+person = Person.new({name: "Maggie Gyllenhaal"})
 person.save
-role= Role.where({character_name: "Rachel Dawes", movie_id: movie.id})[0]
-role.person_id = person.id
+role= Role.new({character_name: "Rachel Dawes", movie_id: movie.id, person_id: person.id})
 role.save
 
+# Adding actors to people table and linking them with The Dark Knight Rises movie
 movie = Movie.where({title: "The Dark Knight Rises"})[0]
 
-person = Person.new({name: "Christian Bale"})[0]
-person.save
-role = Role.where({character_name: "Bruce Wayne", movie_id: movie.id})[0]
-role.person_id = person.id
+person = Person.where({name: "Christian Bale"})[0]
+role = Role.new({character_name: "Bruce Wayne", movie_id: movie.id, person_id: person.id})
 role.save
 
-person = Person.new({name: "Gary Oldman"})[0]
-person.save
-role = Role.where({character_name: "Commissioner Gordon", movie_id: movie.id})[0]
-role.person_id = person.id
+person = Person.where({name: "Gary Oldman"})[0]
+role = Role.new({character_name: "Commissioner Gordon", movie_id: movie.id, person_id: person.id})
 role.save
 
 person = Person.new({name: "Tom Hardy"})
 person.save
-role= Role.where({character_name: "Bane", movie_id: movie.id})[0]
-role.person_id = person.id
+role= Role.new({character_name: "Bane", movie_id: movie.id, person_id: person.id})
 role.save
 
 person = Person.new({name: "Joseph Gordon-Levitt"})
 person.save
-role= Role.where({character_name: "John Blake", movie_id: movie.id})[0]
-role.person_id = person.id
+role= Role.new({character_name: "John Blake", movie_id: movie.id, person_id: person.id})
 role.save
 
 person = Person.new({name: "Ann Hathaway"})
 person.save
-role= Role.where({character_name: "Selina Kyle", movie_id: movie.id})[0]
+role= Role.new({character_name: "Selina Kyle", movie_id: movie.id, person_id: person.id})
 role.person_id = person.id
 role.save
 
@@ -261,5 +250,7 @@ puts "========"
 puts ""
 
 for movie in Movie.all
-    puts "#{movie.title} #{role.actor} #{role.character_name}"
+    for role in movie.roles
+        puts "#{movie.title} #{role.actor} #{role.character_name}"
+    end
 end
